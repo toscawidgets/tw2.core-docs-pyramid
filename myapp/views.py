@@ -41,3 +41,9 @@ def view_widget(request):
     tw2.core.register_controller(widget, 'movie_submit')
     return {'widget': widget}
 
+
+@view_config(route_name='list', renderer='templates/widget.pt')
+def view_list(request):
+    widget = myapp.widgets.MovieList.req()
+    widget.fetch_data(request)
+    return {'widget': widget}
