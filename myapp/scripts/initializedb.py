@@ -12,6 +12,7 @@ from pyramid.paster import (
 from ..models import (
     DBSession,
     MyModel,
+    Genre,
     Base,
     )
 
@@ -26,10 +27,14 @@ def main(argv=sys.argv):
         usage(argv)
     config_uri = argv[1]
     setup_logging(config_uri)
-    settings = get_appsettings(config_uri)
+    settings = get_appsettings(config_uri, name="myapp")
     engine = engine_from_config(settings, 'sqlalchemy.')
     DBSession.configure(bind=engine)
     Base.metadata.create_all(engine)
     with transaction.manager:
         model = MyModel(name='one', value=1)
         DBSession.add(model)
+
+        for name in ['Action', 'Comedy', 'Romance', 'Sci-fi']:
+            DBSession.add(Genre(name=name))
+

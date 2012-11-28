@@ -32,7 +32,12 @@ After you fix the problem, please restart the Pyramid application to
 try it again.
 """
 
+import tw2.core
 import myapp.widgets
 @view_config(route_name='movie', renderer='templates/widget.pt')
 def view_widget(request):
-    return {'widget': myapp.widgets.MovieForm}
+    widget = myapp.widgets.MovieForm.req()
+    widget.fetch_data(request)
+    tw2.core.register_controller(widget, 'movie_submit')
+    return {'widget': widget}
+
