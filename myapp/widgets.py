@@ -4,6 +4,7 @@ import tw2.forms
 
 class MovieForm(tw2.forms.FormPage):
     title = 'Movie'
+    resources = [tw2.core.CSSLink(link='static/myapp.css')]
 
     class child(tw2.forms.TableForm):
         id = tw2.forms.HiddenField()
