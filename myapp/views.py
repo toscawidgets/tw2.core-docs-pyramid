@@ -32,3 +32,7 @@ After you fix the problem, please restart the Pyramid application to
 try it again.
 """
 
+import myapp.widgets
+@view_config(route_name='movie', renderer='templates/widget.pt')
+def view_widget(request):
+    return {'widget': myapp.widgets.MovieForm}
