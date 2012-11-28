@@ -14,6 +14,11 @@ requires = [
     'pyramid_debugtoolbar',
     'zope.sqlalchemy',
     'waitress',
+    "tw2.core",
+    "tw2.forms",
+    "tw2.dynforms",
+    "tw2.sqla",
+    "tw2.jqplugins.jqgrid",
     ]
 
 setup(name='myapp',
