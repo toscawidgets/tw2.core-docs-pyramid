@@ -1,6 +1,7 @@
 import tw2.core
 import tw2.forms
 import tw2.sqla
+import tw2.jqplugins.jqgrid
 import myapp.models
 
 
@@ -32,3 +33,20 @@ class MovieList(tw2.sqla.DbListPage):
     class child(tw2.forms.GridLayout):
         title = tw2.forms.LabelField()
         id = tw2.forms.LinkField(link='/movie?id=$', text='Edit', label=None)
+
+class GridWidget(tw2.jqplugins.jqgrid.SQLAjqGridWidget):
+    id = 'grid_widget'
+    entity = myapp.models.Movie
+    excluded_columns = ['id']
+    prmFilter = {'stringResult': True, 'searchOnEnter': False}
+    pager_options = { "search" : True, "refresh" : True, "add" : False, }
+    options = {
+        'caption': 'A grid!',
+        'url': '/tw2_controllers/db_jqgrid/',
+        'rowNum':15,
+        'rowList':[15,30,50],
+        'viewrecords':True,
+        'imgpath': 'scripts/jqGrid/themes/green/images',
+        'width': 900,
+        'height': 'auto',
+    }

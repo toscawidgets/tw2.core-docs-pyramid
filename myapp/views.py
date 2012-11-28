@@ -47,3 +47,10 @@ def view_list(request):
     widget = myapp.widgets.MovieList.req()
     widget.fetch_data(request)
     return {'widget': widget}
+
+
+@view_config(route_name='grid', renderer='templates/widget.pt')
+def view_grid(request):
+    widget = myapp.widgets.GridWidget.req()
+    tw2.core.register_controller(widget, 'db_jqgrid')
+    return {'widget': widget}

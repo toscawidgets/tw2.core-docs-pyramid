@@ -17,6 +17,7 @@ def main(global_config, **settings):
     config.add_route('home', '/')
     config.add_route('list', '/list')
     config.add_route('movie', '/movie')
+    config.add_route('grid', '/grid')
     config.scan()
     return config.make_wsgi_app()
 
